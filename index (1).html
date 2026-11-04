@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Apoio à Mulher Goiânia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+body{margin:0}
+[hidden]{display:none!important}
+img{max-width:100%}
+/* Layout: faixa violeta com o 180 em cartão sobreposto; depois blocos de ação (ligar, ir, chegar, ajudar). Cores de campanha lilás + amarelo e verde-água como apoio. */
+:root{
+  --bg:#F6F2FA; --surface:#FFFFFF; --fg:#241230; --muted:#5E4B70; --line:#E2D6EE;
+  --hero:#4A1D6B; --hero-fg:#FFFFFF; --hero-soft:#E4D2F7;
+  --sun:#FFC53D; --on-sun:#2B1A00; --sun-soft:#FFF0C7;
+  --alert:#C92A35; --on-alert:#FFFFFF; --alert-soft:#FDE3E5;
+  --teal:#0B7F82; --on-teal:#FFFFFF; --teal-soft:#D8F1F1;
+  --lilac-soft:#EEE4F8; --focus:#0B7F82; --shadow:rgba(36,18,48,.18);
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'Atkinson Hyperlegible','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#150C1E; --surface:#221331; --fg:#F4EDFB; --muted:#BBA9CE; --line:#3B2752;
+  --hero:#2E0F48; --hero-fg:#FFFFFF; --hero-soft:#D5BCEF;
+  --sun:#FFC53D; --on-sun:#2B1A00; --sun-soft:#3D3010;
+  --alert:#FF6B74; --on-alert:#2A0509; --alert-soft:#40161A;
+  --teal:#4FD1D3; --on-teal:#04282A; --teal-soft:#123B3D;
+  --lilac-soft:#2E1C42; --focus:#4FD1D3; --shadow:rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#150C1E; --surface:#221331; --fg:#F4EDFB; --muted:#BBA9CE; --line:#3B2752;
+  --hero:#2E0F48; --hero-fg:#FFFFFF; --hero-soft:#D5BCEF;
+  --sun:#FFC53D; --on-sun:#2B1A00; --sun-soft:#3D3010;
+  --alert:#FF6B74; --on-alert:#2A0509; --alert-soft:#40161A;
+  --teal:#4FD1D3; --on-teal:#04282A; --teal-soft:#123B3D;
+  --lilac-soft:#2E1C42; --focus:#4FD1D3; --shadow:rgba(0,0,0,.5); color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font:400 1.0625rem/1.55 var(--body);padding-bottom:96px}
+h1,h2,h3,.num,.big{font-family:var(--display);text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+
+.wrap{max-width:760px;margin-inline:auto;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+
+/* hero */
+.hero{background:var(--hero);color:var(--hero-fg);position:relative;overflow:hidden;padding-block:44px 120px}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.hero::before{width:280px;height:280px;right:-120px;top:-120px;background:var(--sun);opacity:.28}
+.hero::after{width:200px;height:200px;left:-90px;bottom:-40px;background:var(--teal);opacity:.4}
+.hero .wrap{position:relative;z-index:1}
+.eyebrow{font-weight:700;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--hero-soft)}
+.hero h1{font-weight:800;font-size:clamp(2.6rem,10vw,4.4rem);line-height:1;margin:14px 0 16px;letter-spacing:-.02em}
+.hero p.lead{max-width:34ch;font-size:1.15rem;color:var(--hero-soft)}
+
+/* cartão 180 */
+.call{position:relative;z-index:2;margin-top:-84px;background:var(--surface);border-radius:26px;padding:24px;box-shadow:0 14px 40px var(--shadow);display:grid;gap:16px}
+.call .label{font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.big{font-weight:800;font-size:clamp(4.6rem,24vw,7.5rem);line-height:.85;color:var(--alert);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.call .meta{color:var(--muted)}
+.wa{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;background:var(--teal-soft);border-radius:16px;padding:14px 16px}
+.wa .txt{flex:1 1 200px;min-width:0}
+.wa strong{display:block;font-variant-numeric:tabular-nums}
+
+/* botões */
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:999px;border:0;font:700 1rem var(--body);text-decoration:none;cursor:pointer;color:inherit;background:var(--lilac-soft);transition:transform .12s}
+.btn:active{transform:scale(.97)}
+.btn-alert{background:var(--alert);color:var(--on-alert)}
+.btn-teal{background:var(--teal);color:var(--on-teal)}
+.btn-sun{background:var(--sun);color:var(--on-sun)}
+.btn-soft{background:var(--lilac-soft);color:var(--fg)}
+.btn-line{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 2px var(--fg)}
+
+/* seções */
+.sec{padding-top:40px}
+.sec h2{font-weight:800;font-size:clamp(1.6rem,6vw,2.1rem);line-height:1.1;margin:0 0 6px;letter-spacing:-.01em}
+.sec .sub{color:var(--muted);margin-bottom:18px;max-width:56ch}
+.stack{display:grid;gap:12px}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 16px}
+.row .num{font-weight:800;font-size:2.5rem;line-height:1;min-width:3.4ch;font-variant-numeric:tabular-nums}
+.row .txt{flex:1 1 150px;min-width:0}
+.row .txt strong{display:block}
+.n190{color:var(--teal)} .n192{color:var(--alert)} .n100{color:var(--hero)}
+:root[data-theme="dark"] .n100{color:var(--hero-soft)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .n100{color:var(--hero-soft)}}
+
+/* delegacias */
+.grid2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));align-items:start}
+.place{border-radius:22px;padding:22px;display:grid;gap:14px;min-width:0}
+.place.p1{background:var(--teal-soft)}
+.place.p2{background:var(--lilac-soft)}
+.place h3{font-weight:800;font-size:1.3rem;line-height:1.15;margin:0}
+.place dl{margin:0;display:grid;gap:10px}
+.place dt{font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.place dd{margin:0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.pill{justify-self:start;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:var(--surface);color:var(--fg)}
+.pill i{width:10px;height:10px;border-radius:50%;background:currentColor;flex:none}
+.pill[data-state="open"]{background:var(--teal);color:var(--on-teal)}
+.pill[data-state="closed"]{background:var(--sun);color:var(--on-sun)}
+.note{font-size:.95rem;color:var(--muted)}
+.alertbox{background:var(--sun-soft);border-radius:14px;padding:12px 14px;font-size:.98rem}
+
+/* ônibus */
+details.route{background:var(--surface);border:1px solid var(--line);border-radius:20px}
+details.route>summary{padding:18px 20px}
+.route-body{padding:0 20px 22px;display:grid;gap:16px}
+.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:18px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px}
+.steps li::before{content:counter(s);width:40px;height:40px;border-radius:50%;background:var(--sun);color:var(--on-sun);display:grid;place-items:center;font:800 1.1rem var(--display)}
+.steps h3{margin:0 0 4px;font-size:1.05rem;font-weight:800}
+.steps li>div{min-width:0}
+.lines{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.lines span{padding:4px 14px;border-radius:999px;background:var(--lilac-soft);font-weight:700;font-variant-numeric:tabular-nums}
+
+/* acordeões */
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;font:800 1.1rem/1.25 var(--display)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";flex:none;font:700 1.7rem/1 var(--body)}
+details[open]>summary::after{content:"\2212"}
+details.tip{border-radius:18px;background:var(--tipbg)}
+details.tip>summary{padding:16px 18px}
+details.tip p{padding:0 18px 18px}
+.t1{--tipbg:var(--sun-soft)} .t2{--tipbg:var(--teal-soft)} .t3{--tipbg:var(--lilac-soft)}
+.t4{--tipbg:var(--sun-soft)} .t5{--tipbg:var(--teal-soft)} .t6{--tipbg:var(--alert-soft)}
+
+.law{background:var(--hero);color:var(--hero-fg);border-radius:22px;padding:22px;margin-bottom:14px}
+.law p{color:var(--hero-soft)}
+.law strong{color:var(--hero-fg)}
+
+footer{padding-block:40px 0;color:var(--muted);font-size:.95rem;display:grid;gap:10px}
+
+/* esconder + aviso */
+.hide-btn{position:fixed;z-index:20;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));min-height:46px;padding:0 18px;border:0;border-radius:999px;background:var(--fg);color:var(--bg);font:700 .95rem var(--body);box-shadow:0 6px 20px var(--shadow);cursor:pointer}
+.toast{position:fixed;z-index:30;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translate(-50%,12px);background:var(--fg);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:calc(100vw - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+#cover{position:fixed;inset:0;z-index:100;overflow:auto;background:#ffffff;color:#2b2b2b;font:1.05rem/1.6 Georgia,'Times New Roman',serif;padding:32px max(20px,env(safe-area-inset-right,0px)) 32px max(20px,env(safe-area-inset-left,0px))}
+#cover .in{max-width:640px;margin:0 auto}
+#cover h1{font:700 1.9rem/1.2 Georgia,serif;margin:0 0 8px}
+#cover h2{font:700 1.15rem/1.3 Georgia,serif;margin:22px 0 6px}
+#cover ul{padding-left:1.2rem;margin:0}
+#cover button{margin-top:36px;background:none;border:0;color:#8a8a8a;font:.85rem Georgia,serif;text-decoration:underline;cursor:pointer;padding:10px 0}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Goiânia e Aparecida de Goiânia · Goiás</p>
+    <h1>Você não está sozinha.</h1>
+    <p class="lead">Se você sofre violência, ou conhece alguém que sofre, aqui estão os telefones e endereços para pedir ajuda.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="call" aria-labelledby="t180">
+    <p class="label" id="t180">Central de Atendimento à Mulher</p>
+    <p class="big">180</p>
+    <p class="meta">Ligação gratuita, 24 horas por dia. Orientação, acolhimento e denúncia.</p>
+    <div class="btns">
+      <a class="btn btn-alert" href="tel:180">Ligar para o 180</a>
+      <button class="btn btn-soft" type="button" data-copy="180" data-ok="Número copiado">Copiar número</button>
+    </div>
+    <div class="wa">
+      <div class="txt">
+        <span class="note">WhatsApp do Ligue 180</span>
+        <strong>(61) 9610-0180</strong>
+      </div>
+      <div class="btns">
+        <a class="btn btn-teal" href="https://wa.me/556196100180">Abrir WhatsApp</a>
+        <button class="btn btn-soft" type="button" data-copy="(61) 9610-0180" data-ok="Número copiado">Copiar</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="perigo" aria-labelledby="h-perigo">
+    <h2 id="h-perigo">Em perigo agora</h2>
+    <p class="sub">Se há agressão acontecendo ou ameaça grave, ligue 190.</p>
+    <div class="stack">
+      <div class="row">
+        <span class="num n190">190</span>
+        <div class="txt"><strong>Polícia Militar</strong><span class="note">Emergência, risco imediato</span></div>
+        <div class="btns">
+          <a class="btn btn-teal" href="tel:190">Ligar</a>
+          <button class="btn btn-soft" type="button" data-copy="190" data-ok="Número copiado">Copiar</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="num n192">192</span>
+        <div class="txt"><strong>SAMU</strong><span class="note">Socorro médico</span></div>
+        <div class="btns">
+          <a class="btn btn-alert" href="tel:192">Ligar</a>
+          <button class="btn btn-soft" type="button" data-copy="192" data-ok="Número copiado">Copiar</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="num n100">100</span>
+        <div class="txt"><strong>Disque 100</strong><span class="note">Denúncia de violação de direitos humanos</span></div>
+        <div class="btns">
+          <a class="btn btn-sun" href="tel:100">Ligar</a>
+          <button class="btn btn-soft" type="button" data-copy="100" data-ok="Número copiado">Copiar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="onde" aria-labelledby="h-onde">
+    <h2 id="h-onde">Onde buscar atendimento</h2>
+    <p class="sub">Delegacias especializadas no atendimento à mulher. Você pode registrar a ocorrência e pedir medidas protetivas.</p>
+    <div class="grid2">
+
+      <article class="place p1">
+        <span class="pill" id="st-deaem" data-state="open"><i></i><span>Aberta 24 horas</span></span>
+        <h3>DEAEM Goiânia</h3>
+        <p class="note">Delegacia Estadual de Atendimento Especializado à Mulher. Atende à noite, em fins de semana e feriados.</p>
+        <dl>
+          <div><dt>Endereço</dt><dd>R. 24, 203 - St. Central, Goiânia - GO, 74030-060</dd></div>
+          <div><dt>Funcionamento</dt><dd>Todos os dias, 24 horas</dd></div>
+          <div><dt>Telefone</dt><dd>(62) 3201-2802</dd></div>
+        </dl>
+        <div class="btns">
+          <a class="btn btn-teal" href="tel:+556232012802">Ligar</a>
+          <button class="btn btn-soft" type="button" data-copy="(62) 3201-2802" data-ok="Telefone copiado">Copiar telefone</button>
+          <a class="btn btn-soft" href="https://www.google.com/maps/search/?api=1&amp;query=R.%2024%2C%20203%20-%20St.%20Central%2C%20Goi%C3%A2nia%20-%20GO%2C%2074030-060">Ver no mapa</a>
+        </div>
+      </article>
+
+      <article class="place p2">
+        <span class="pill" id="st-deam"><i></i><span>Seg a sex · 8h às 18h</span></span>
+        <h3>DEAM Aparecida de Goiânia</h3>
+        <p class="note">Delegacia Especializada em Atendimento à Mulher.</p>
+        <dl>
+          <div><dt>Endereço</dt><dd>R. Paracatu, 81 - Quadra 7 - Vila Brasília, Aparecida de Goiânia - GO, 74905-590</dd></div>
+          <div><dt>Funcionamento</dt><dd>Segunda a sexta-feira, das 8h às 18h</dd></div>
+          <div><dt>Telefone</dt><dd>(62) 3201-2642</dd></div>
+        </dl>
+        <p class="alertbox" id="nota-fechada" hidden>Fechada neste horário. A DEAEM de Goiânia atende agora, 24 horas.</p>
+        <div class="btns">
+          <a class="btn btn-sun" href="tel:+556232012642">Ligar</a>
+          <button class="btn btn-soft" type="button" data-copy="(62) 3201-2642" data-ok="Telefone copiado">Copiar telefone</button>
+          <a class="btn btn-soft" href="https://www.google.com/maps/search/?api=1&amp;query=R.%20Paracatu%2C%2081%20-%20Quadra%207%20-%20Vila%20Brasilia%2C%20Aparecida%20de%20Goi%C3%A2nia%20-%20GO%2C%2074905-590">Ver no mapa</a>
+        </div>
+      </article>
+
+    </div>
+    <p class="note" style="margin-top:12px">O aviso de aberta ou fechada usa o horário informado acima. Em dúvida, ligue antes ou procure a DEAEM, que funciona 24 horas.</p>
+  </section>
+
+  <section class="sec" id="onibus" aria-labelledby="h-onibus">
+    <h2 id="h-onibus">Como chegar de ônibus</h2>
+    <p class="sub">Trajeto até a DEAEM, no Centro de Goiânia, saindo do Assentamento.</p>
+    <details class="route">
+      <summary>Ver o trajeto passo a passo</summary>
+      <div class="route-body">
+        <ol class="steps">
+          <li><div>
+            <h3>Saindo do Assentamento</h3>
+            <p>Pegue a linha 571 (T. Maranata / Madre Germana II) nas proximidades do bairro. Desembarque no Terminal Maranata.</p>
+            <div class="lines"><span>571</span></div>
+          </div></li>
+          <li><div>
+            <h3>Do terminal ao Centro de Goiânia</h3>
+            <p>No Terminal Maranata, pegue uma linha que ligue aos eixos centrais da cidade, como as alimentadoras que conectam ao Terminal Garavelo ou ao Eixo Anhanguera (BRT) em direção ao Centro. Outra opção é usar um terminal integrado com linhas diretas ao Centro, pelas avenidas centrais.</p>
+          </div></li>
+          <li><div>
+            <h3>Chegada à DEAEM</h3>
+            <p>Na região da Avenida Goiás ou da Avenida Araguaia, caminhe até a Rua 24, nº 203. Linhas que passam perto da delegacia:</p>
+            <div class="lines"><span>019</span><span>027</span><span>035</span><span>164</span><span>175</span></div>
+          </div></li>
+        </ol>
+        <p class="note">Linhas e horários podem mudar. Confirme no terminal ou no aplicativo do transporte coletivo antes de sair.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="sec" id="ajudar" aria-labelledby="h-ajudar">
+    <h2 id="h-ajudar">Como ajudar uma mulher</h2>
+    <p class="sub">Toque em cada cartão. Pequenos gestos fazem diferença.</p>
+    <div class="grid2">
+      <details class="tip t1"><summary>Acredite nela</summary>
+        <p>Quando ela contar, acredite. Não peça provas nem pergunte se foi "tão grave assim". Falar já exigiu muita coragem.</p></details>
+      <details class="tip t2"><summary>Ouça sem julgar</summary>
+        <p>Deixe que ela fale no tempo dela. Evite perguntas como "por que você não saiu antes?". Às vezes ser ouvida é o primeiro passo.</p></details>
+      <details class="tip t3"><summary>Não a culpe</summary>
+        <p>A responsabilidade é de quem agride. Evite frases como "ela provocou" ou "ele não é assim".</p></details>
+      <details class="tip t4"><summary>Respeite o tempo dela</summary>
+        <p>Sair de uma relação violenta é difícil e pode ser perigoso. Não force decisões nem dê ultimato. Continue por perto.</p></details>
+      <details class="tip t5"><summary>Ajude a buscar apoio</summary>
+        <p>Ofereça acompanhar até a delegacia, ajudar com o transporte ou cuidar das crianças enquanto ela vai. Mostre os telefones desta página.</p></details>
+      <details class="tip t6"><summary>Em risco imediato, ligue 190</summary>
+        <p>Se há agressão em andamento ou ameaça grave, chame a polícia. Não se coloque em confronto com o agressor.</p></details>
+    </div>
+  </section>
+
+  <section class="sec" id="direitos" aria-labelledby="h-direitos">
+    <h2 id="h-direitos">Entenda seus direitos</h2>
+    <div class="law" style="margin-top:12px">
+      <p><strong>A Lei Maria da Penha (Lei 11.340/2006)</strong> protege mulheres da violência doméstica e familiar e prevê medidas protetivas de urgência, que podem ser pedidas na delegacia.</p>
+    </div>
+    <p class="sub">A violência não é só física. Toque para ver cada tipo.</p>
+    <div class="stack">
+      <details class="tip t3"><summary>Violência física</summary>
+        <p>Qualquer ato que machuque o corpo ou a saúde: empurrões, tapas, socos, sufocamento.</p></details>
+      <details class="tip t1"><summary>Violência psicológica</summary>
+        <p>Humilhar, ameaçar, controlar, vigiar e isolar de amigos e família.</p></details>
+      <details class="tip t2"><summary>Violência sexual</summary>
+        <p>Forçar relação sexual ou qualquer ato sexual contra a vontade dela, inclusive dentro do casamento ou do namoro.</p></details>
+      <details class="tip t4"><summary>Violência patrimonial</summary>
+        <p>Destruir documentos e objetos, reter dinheiro ou bens, impedir que ela trabalhe ou use o que é dela.</p></details>
+      <details class="tip t5"><summary>Violência moral</summary>
+        <p>Xingar, expor a vida dela, espalhar mentiras ou acusações falsas para atingir sua reputação.</p></details>
+    </div>
+  </section>
+
+  <footer>
+    <p>Telefones e endereços foram informados pelo projeto. Confira os dados antes de ir.</p>
+    <div class="btns"><button class="btn btn-line" type="button" id="share" data-copy="" data-ok="Link copiado">Copiar link desta página</button></div>
+    <p class="note">O botão "Esconder página" apenas cobre a tela. Para apagar o histórico, use as configurações do navegador.</p>
+  </footer>
+</main>
+
+<button class="hide-btn" type="button" id="hide">Esconder página</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div id="cover" hidden>
+  <div class="in">
+    <h1>Pão de queijo mineiro</h1>
+    <p>Receita simples para o café da tarde.</p>
+    <h2>Ingredientes</h2>
+    <ul>
+      <li>2 xícaras de polvilho azedo</li>
+      <li>1 xícara de leite</li>
+      <li>1/2 xícara de óleo</li>
+      <li>2 ovos</li>
+      <li>1 xícara de queijo meia cura ralado</li>
+      <li>1 colher de chá de sal</li>
+    </ul>
+    <h2>Modo de preparo</h2>
+    <p>Ferva o leite com o óleo e o sal e despeje sobre o polvilho. Misture bem, deixe amornar, junte os ovos e o queijo e sove até dar liga. Faça bolinhas e leve ao forno médio por cerca de 25 minutos.</p>
+    <button type="button" id="back">Voltar</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var toast=document.getElementById('toast'), tt;
+  function say(msg){
+    toast.textContent=msg; toast.classList.add('on');
+    clearTimeout(tt); tt=setTimeout(function(){toast.classList.remove('on')},1800);
+  }
+  function fallbackCopy(text){
+    var ta=document.createElement('textarea');
+    ta.value=text; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    var ok=false; try{ok=document.execCommand('copy')}catch(e){}
+    document.body.removeChild(ta); return ok;
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-copy]'); if(!b) return;
+    var text=b.getAttribute('data-copy');
+    if(b.id==='share'){ text=location.href; }
+    var ok=b.getAttribute('data-ok')||'Copiado';
+    function done(){say(ok)}
+    function fail(){ say(fallbackCopy(text)?ok:'Selecione e copie manualmente'); }
+    try{
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done,fail);
+      } else fail();
+    }catch(err){ fail(); }
+  });
+
+  /* esconder página */
+  var cover=document.getElementById('cover');
+  function hidePage(){cover.hidden=false; cover.scrollTop=0}
+  document.getElementById('hide').addEventListener('click',hidePage);
+  document.getElementById('back').addEventListener('click',function(){cover.hidden=true});
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&cover.hidden) hidePage(); });
+
+  /* aberta agora (horário de Brasília) */
+  try{
+    var parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',weekday:'short',hour:'numeric',hourCycle:'h23'}).formatToParts(new Date());
+    var o={}; parts.forEach(function(p){o[p.type]=p.value});
+    var h=parseInt(o.hour,10), wd=o.weekday;
+    var weekday=['Mon','Tue','Wed','Thu','Fri'].indexOf(wd)>-1;
+    var open=weekday&&h>=8&&h<18;
+    var pill=document.getElementById('st-deam');
+    pill.setAttribute('data-state',open?'open':'closed');
+    pill.lastElementChild.textContent=open?'Aberta agora':'Fechada agora';
+    document.getElementById('nota-fechada').hidden=open;
+  }catch(e){}
+})();
+</script>
+
+</body>
+</html>
